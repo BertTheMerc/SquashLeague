@@ -10,7 +10,7 @@ using SquashLegaue.Controllers;
 namespace SquashLegaue.Tests.Controllers
 {
     [TestClass]
-    public class HomeControllerTest
+    public class LeagueTableControllerTest
     {
         [TestMethod]
         public void Index()
@@ -22,7 +22,7 @@ namespace SquashLegaue.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+            Assert.AreEqual("League Table", result.ViewBag.Title);
         }
     }
 }
