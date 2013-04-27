@@ -10,7 +10,7 @@ namespace SquashLegaue.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to the Zeetland Squash League Site.";
+            ViewBag.Message = "Welcome to the Zetland Squash League Site.";
 
             return View();
         }

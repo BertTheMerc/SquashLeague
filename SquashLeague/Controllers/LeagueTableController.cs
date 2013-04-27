@@ -21,25 +21,31 @@ namespace SquashLegaue.Controllers
  
         public ActionResult Index()
         {
-            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            da = new SqlDataAdapter("select * from vLeagueTable ORDER BY POINTS DESC, GamesDiff DESC", con);
-            da.Fill(ds);
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            ViewBag.Title = "The League table";
+            ViewBag.Message = "Here are the current standings.";
+
+            if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
             {
-                table.Add(new LeagueTable()
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                da = new SqlDataAdapter("select * from vLeagueTable ORDER BY POINTS DESC, GamesDiff DESC", con);
+                da.Fill(ds);
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Name = dr["Name"].ToString(),
-                    Matchs = int.Parse(dr["Matchs"].ToString()),
-                    Win = int.Parse(dr["Win"].ToString()),
-                    Draw = int.Parse(dr["Draw"].ToString()),
-                    Lost = int.Parse(dr["Lost"].ToString()),
-                    GamesWon = int.Parse(dr["GamesWon"].ToString()),
-                    GamesLost = int.Parse(dr["GamesLost"].ToString()),
-                    GamesDiff = int.Parse(dr["GamesDiff"].ToString()),
-                    Points = int.Parse(dr["Points"].ToString()),
-                    WinPercentage = int.Parse(dr["WinPercentage"].ToString())
-                } );
-            }          
+                    table.Add(new LeagueTable()
+                    {
+                        Name = dr["Name"].ToString(),
+                        Matchs = int.Parse(dr["Matchs"].ToString()),
+                        Win = int.Parse(dr["Win"].ToString()),
+                        Draw = int.Parse(dr["Draw"].ToString()),
+                        Lost = int.Parse(dr["Lost"].ToString()),
+                        GamesWon = int.Parse(dr["GamesWon"].ToString()),
+                        GamesLost = int.Parse(dr["GamesLost"].ToString()),
+                        GamesDiff = int.Parse(dr["GamesDiff"].ToString()),
+                        Points = int.Parse(dr["Points"].ToString()),
+                        WinPercentage = int.Parse(dr["WinPercentage"].ToString())
+                    });
+                }
+            }
             return View(table);
         }
 

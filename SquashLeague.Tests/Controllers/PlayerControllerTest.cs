@@ -16,13 +16,13 @@ namespace SquashLegaue.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            PlayerController controller = new PlayerController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Player Index", result.ViewBag.Title);
+            Assert.AreEqual("Here are the players currently in the league.", result.ViewBag.Message);
         }
     }
 }

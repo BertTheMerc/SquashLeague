@@ -22,17 +22,24 @@ namespace SquashLegaue.Controllers
 
         public ActionResult Index()
         {
-            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            da = new SqlDataAdapter("select * from Players ORDER BY name", con);
-            da.Fill(ds);
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            ViewBag.Title = "The Players";
+            ViewBag.Message = "Here are the players currently in the league.";
+
+            if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
             {
-                table.Add(new Player()
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                da = new SqlDataAdapter("select * from Players ORDER BY name", con);
+                da.Fill(ds);
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    Name = dr["Name"].ToString(),
-                    Nickname = (dr["NickName"].ToString())
-                });
+                    table.Add(new Player()
+                    {
+                        Name = dr["Name"].ToString(),
+                        Nickname = (dr["NickName"].ToString())
+                    });
+                }
             }
+
             return View(table);
         }
 
