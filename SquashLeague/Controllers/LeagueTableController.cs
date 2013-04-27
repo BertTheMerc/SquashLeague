@@ -14,8 +14,7 @@ namespace SquashLegaue.Controllers
     public class LeagueTableController : Controller
     {
         private List<LeagueTable> table = new List<LeagueTable>();
-        private int _nextId = 1;
-
+        
         SqlConnection con;
         SqlDataAdapter da;
         DataSet ds = new DataSet();
