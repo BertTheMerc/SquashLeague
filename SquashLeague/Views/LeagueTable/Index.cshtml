@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SquashLegaue.Models.LeagueTable>
+
+@{
+    ViewBag.Title = "League Table";
+}
+
+<h2>League Table</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Matchs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Win)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Draw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GamesWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GamesLost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GamesDiff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WinPercentage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Matchs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Win)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Draw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GamesWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GamesLost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GamesDiff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WinPercentage)
+        </td>
+    </tr>
+}
+
+</table>
