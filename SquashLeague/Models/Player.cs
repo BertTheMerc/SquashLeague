@@ -8,6 +8,8 @@ namespace SquashLegaue.Models
 {
     public class Player
     {
+        public int Id { get; set; }
+
         [Display(Name = "Player")]
         public string Name { get; set; }
 

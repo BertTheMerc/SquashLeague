@@ -1,53 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Data.SqlClient;
+
 
 namespace SquashLegaue.Controllers
 {   
     using SquashLegaue.Models;
+    using SquashLegaue.Repo;
 
     public class LeagueTableController : Controller
     {
-        private List<LeagueTable> table = new List<LeagueTable>();
-        
-        SqlConnection con;
-        SqlDataAdapter da;
-        DataSet ds = new DataSet();
- 
         public ActionResult Index()
         {
             ViewBag.Title = "The League table";
             ViewBag.Message = "Here are the current standings.";
 
-            if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
-            {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                da = new SqlDataAdapter("select * from vLeagueTable ORDER BY POINTS DESC, GamesDiff DESC", con);
-                da.Fill(ds);
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    table.Add(new LeagueTable()
-                    {
-                        Name = dr["Name"].ToString(),
-                        Matchs = int.Parse(dr["Matchs"].ToString()),
-                        Win = int.Parse(dr["Win"].ToString()),
-                        Draw = int.Parse(dr["Draw"].ToString()),
-                        Lost = int.Parse(dr["Lost"].ToString()),
-                        GamesWon = int.Parse(dr["GamesWon"].ToString()),
-                        GamesLost = int.Parse(dr["GamesLost"].ToString()),
-                        GamesDiff = int.Parse(dr["GamesDiff"].ToString()),
-                        Points = int.Parse(dr["Points"].ToString()),
-                        WinPercentage = int.Parse(dr["WinPercentage"].ToString())
-                    });
-                }
-            }
-            return View(table);
+            return View(SquashLegaue.Repo.LeagueTableRepo.Get());
         }
 
+        [Authorize]
+        public ActionResult AddResult()
+        {
+            ViewBag.Title = "Add Result";
+            ViewBag.Message = "Add a result of a game";
+
+            var model = new GameResult();
+            model.DateOfGame = DateTime.Today;
+    
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult AddResult(GameResult model)
+        {
+            if (ModelState.IsValid)
+            {
+                LeagueTableRepo.AddGame(model);
+            }
+
+            return RedirectToAction("Index", "LeagueTable");
+        }
+
+        public ActionResult ListGames()
+        {
+            ViewBag.Title = "The League table";
+            ViewBag.Message = "Here are the list of completed games";
+
+            return View(SquashLegaue.Repo.LeagueTableRepo.GetGames());
+        }
     }
 }
