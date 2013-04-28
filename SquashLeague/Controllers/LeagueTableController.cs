@@ -29,7 +29,7 @@ namespace SquashLegaue.Controllers
 
             var model = new GameResult();
             model.DateOfGame = DateTime.Today;
-    
+            
             return View(model);
         }
 
@@ -45,6 +45,18 @@ namespace SquashLegaue.Controllers
 
             return RedirectToAction("Index", "LeagueTable");
         }
+
+        [Authorize]
+        public ActionResult Delete(int Id)
+        {
+            if (ModelState.IsValid)
+            {
+                LeagueTableRepo.DeleteGame(Id);
+            }
+
+            return RedirectToAction("Index", "LeagueTable");
+        }
+
 
         public ActionResult ListGames()
         {

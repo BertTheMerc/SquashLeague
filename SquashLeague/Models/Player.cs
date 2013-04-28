@@ -16,5 +16,8 @@ namespace SquashLegaue.Models
         [Display(Name = "Nickname")]
         public string Nickname { get; set; }
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
     }
 }

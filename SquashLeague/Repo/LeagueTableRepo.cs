@@ -63,6 +63,8 @@ namespace SquashLegaue.Repo
                             DateOfGame = DateTime.Parse(dr["Played"].ToString()),
                             Player1 = dr["Player1Name"].ToString(),
                             Player2 = dr["Player2Name"].ToString(),
+                            Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
+                            Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
                             Player1Score = int.Parse(dr["Player1Score"].ToString()),
                             Player2Score = int.Parse(dr["Player2Score"].ToString()),
                         });
@@ -83,14 +85,29 @@ namespace SquashLegaue.Repo
                     var sp = new SqlCommand("AddGame", con);
                     sp.CommandType = CommandType.StoredProcedure;
                     sp.Parameters.AddWithValue("DateOfGame", result.DateOfGame);
-                    sp.Parameters.AddWithValue("Player1", result.Player1);
-                    sp.Parameters.AddWithValue("Player2", result.Player2);
+                    sp.Parameters.AddWithValue("Player1", result.Player1SelectedItemId);
+                    sp.Parameters.AddWithValue("Player2", result.Player2SelectedItemId);
                     sp.Parameters.AddWithValue("Player1Score", result.Player1Score);
                     sp.Parameters.AddWithValue("Player2Score", result.Player2Score);
                     con.Open();
                     sp.ExecuteNonQuery();
                 }
             }        
+        }
+
+        public static void DeleteGame(int GameId)
+        {
+            if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    var sp = new SqlCommand("DeleteGame", con);
+                    sp.CommandType = CommandType.StoredProcedure;
+                    sp.Parameters.AddWithValue("GameId", GameId);
+                    con.Open();
+                    sp.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
