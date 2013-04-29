@@ -2,14 +2,12 @@
 DROP PROCEDURE [dbo].[AddGame]
 GO
 
-/****** Object:  StoredProcedure [dbo].[AddGame]    Script Date: 28/04/2013 12:58:20 ******/
+/****** Object:  StoredProcedure [dbo].[AddGame]    Script Date: 29/04/2013 20:55:58 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
-
 
 -- =============================================
 -- Author:		<Author,,Name>
@@ -46,8 +44,4 @@ BEGIN
 
 END
 
-
-
 GO
-
-

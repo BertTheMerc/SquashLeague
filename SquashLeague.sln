@@ -5,6 +5,36 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquashLeague", "SquashLeagu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquashLeague.Tests", "SquashLeague.Tests\SquashLeague.Tests.csproj", "{8CBACF00-CA90-4747-9233-74C2774F3258}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7C0D5FE-01EB-4122-BF93-A03D48B4CFBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{B36E9BF7-158A-4692-BAB5-A1E60F05F6DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{FC69DAFD-33DE-401E-A74A-F0660210AA0B}"
+	ProjectSection(SolutionItems) = preProject
+		Database\Functions\WinPercentage.sql = Database\Functions\WinPercentage.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{5A3A6D07-9D4C-4ABB-BF5E-F40B4D8C6D75}"
+	ProjectSection(SolutionItems) = preProject
+		Database\StoredProcedures\AddGame.sql = Database\StoredProcedures\AddGame.sql
+		Database\StoredProcedures\DeleteGame.sql = Database\StoredProcedures\DeleteGame.sql
+		Database\StoredProcedures\GenerateLeagueTable.sql = Database\StoredProcedures\GenerateLeagueTable.sql
+		Database\StoredProcedures\UpdatePlayer.sql = Database\StoredProcedures\UpdatePlayer.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Views", "Views", "{93999BD6-6780-4996-A038-59731C69B36A}"
+	ProjectSection(SolutionItems) = preProject
+		Database\Views\vLeagueTable.sql = Database\Views\vLeagueTable.sql
+		Database\Views\vResults.sql = Database\Views\vResults.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{7E0ECE02-229A-46DC-B4A2-669E9E6D6343}"
+	ProjectSection(SolutionItems) = preProject
+		Database\Tables\Games.sql = Database\Tables\Games.sql
+		Database\Tables\LeagueTable.sql = Database\Tables\LeagueTable.sql
+		Database\Tables\Players.sql = Database\Tables\Players.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +52,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B36E9BF7-158A-4692-BAB5-A1E60F05F6DE} = {B7C0D5FE-01EB-4122-BF93-A03D48B4CFBE}
+		{FC69DAFD-33DE-401E-A74A-F0660210AA0B} = {B36E9BF7-158A-4692-BAB5-A1E60F05F6DE}
+		{5A3A6D07-9D4C-4ABB-BF5E-F40B4D8C6D75} = {B36E9BF7-158A-4692-BAB5-A1E60F05F6DE}
+		{93999BD6-6780-4996-A038-59731C69B36A} = {B36E9BF7-158A-4692-BAB5-A1E60F05F6DE}
+		{7E0ECE02-229A-46DC-B4A2-669E9E6D6343} = {B36E9BF7-158A-4692-BAB5-A1E60F05F6DE}
 	EndGlobalSection
 EndGlobal

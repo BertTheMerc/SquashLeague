@@ -131,7 +131,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SquashLeague\SquashLeague.csproj">
       <Project>{2F16E121-2ADE-4B3D-B446-F98BC9FBE16C}</Project>
-      <Name>SquashLegaue</Name>
+      <Name>SquashLeague</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

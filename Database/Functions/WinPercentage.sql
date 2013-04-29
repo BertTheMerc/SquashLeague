@@ -1,11 +1,8 @@
-USE [dbc59d672f57bf48fdafa8a1a500dea947]
-GO
-
 /****** Object:  UserDefinedFunction [dbo].[WinPercentage]    Script Date: 28/04/2013 12:59:36 ******/
 DROP FUNCTION [dbo].[WinPercentage]
 GO
 
-/****** Object:  UserDefinedFunction [dbo].[WinPercentage]    Script Date: 28/04/2013 12:59:36 ******/
+/****** Object:  UserDefinedFunction [dbo].[WinPercentage]    Script Date: 29/04/2013 20:53:27 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -24,25 +21,25 @@ CREATE FUNCTION [dbo].[WinPercentage]
 	@Lost smallint,
 	@Draw smallint
 )
-RETURNS float
+RETURNS INT
 AS
 BEGIN
 	-- Declare the return variable here
-	DECLARE @Result float
+	DECLARE @Result INT
 	SELECT @Result = 0
-
+	
 	DECLARE @Matchs smallint
 	SELECT @Matchs = @Won + @Lost + @Draw
 
 	IF @Matchs > 0
 	(
-		SELECT @Result = 100/@Matchs * @Won
+		SELECT @Result = ROUND(100.0/@Matchs * @Won, 0)
 	)
-	
+
 	RETURN @Result
 
 END
 
-GO
 
+GO
 
