@@ -17,6 +17,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{5A3A6D07-9D4C-4ABB-BF5E-F40B4D8C6D75}"
 	ProjectSection(SolutionItems) = preProject
 		Database\StoredProcedures\AddGame.sql = Database\StoredProcedures\AddGame.sql
+		Database\StoredProcedures\DeleteScheduledGame.sql = Database\StoredProcedures\DeleteScheduledGame.sql
+		Database\StoredProcedures\EditScheduleGame.sql = Database\StoredProcedures\EditScheduleGame.sql
+		Database\StoredProcedures\ScheduleGame.sql = Database\StoredProcedures\ScheduleGame.sql
 		Database\StoredProcedures\DeleteGame.sql = Database\StoredProcedures\DeleteGame.sql
 		Database\StoredProcedures\GenerateLeagueTable.sql = Database\StoredProcedures\GenerateLeagueTable.sql
 		Database\StoredProcedures\UpdatePlayer.sql = Database\StoredProcedures\UpdatePlayer.sql
@@ -26,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Views", "Views", "{93999BD6
 	ProjectSection(SolutionItems) = preProject
 		Database\Views\vLeagueTable.sql = Database\Views\vLeagueTable.sql
 		Database\Views\vResults.sql = Database\Views\vResults.sql
+		Database\Views\vScheduleGames.sql = Database\Views\vScheduleGames.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{7E0ECE02-229A-46DC-B4A2-669E9E6D6343}"
@@ -33,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{7E0ECE
 		Database\Tables\Games.sql = Database\Tables\Games.sql
 		Database\Tables\LeagueTable.sql = Database\Tables\LeagueTable.sql
 		Database\Tables\Players.sql = Database\Tables\Players.sql
+		Database\Tables\ScheduleGames.sql = Database\Tables\ScheduleGames.sql
 	EndProjectSection
 EndProject
 Global

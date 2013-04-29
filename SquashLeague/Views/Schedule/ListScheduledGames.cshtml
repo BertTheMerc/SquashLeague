@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SquashLegaue.Models.Game>
+
+@{
+    ViewBag.Title = "List of scheduled games";
+}
+
+<h2>List of scheduled games</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfGame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Player1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Player2)
+        </th>
+ 
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfGame)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player2)
+        </td>
+        <td>
+            @Html.ActionLink("Complete Game", "Complete", "LeagueTable", new { id = item.ID }, new { }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

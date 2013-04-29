@@ -21,6 +21,7 @@ namespace SquashLegaue.Controllers
             return View(SquashLegaue.Repo.LeagueTableRepo.Get());
         }
 
+
         [Authorize]
         public ActionResult AddResult()
         {
@@ -64,6 +65,22 @@ namespace SquashLegaue.Controllers
             ViewBag.Message = "Here are the list of completed games";
 
             return View(SquashLegaue.Repo.LeagueTableRepo.GetGames());
+        }
+
+        [Authorize]
+        public ActionResult Complete(int Id)
+        {
+            if (ModelState.IsValid)
+            {
+                var game = ScheduleRepo.GetScheduledGame(Id);
+                GameResult result = new GameResult();
+                result.DateOfGame = game.DateOfGame;
+                result.Player1SelectedItemId = game.Player1SelectedItemId;
+                result.Player2SelectedItemId = game.Player2SelectedItemId;
+                return View("AddResult", result);
+            }
+
+            return RedirectToAction("ListScheduleGames", "Schedule");
         }
     }
 }

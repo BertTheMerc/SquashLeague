@@ -189,11 +189,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeagueTableController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameResult.cs" />
     <Compile Include="Models\LeagueTable.cs" />
     <Compile Include="Models\Player.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\LeagueTableRepo.cs" />
     <Compile Include="Repo\PlayerRepo.cs" />
+    <Compile Include="Repo\ScheduleRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -317,6 +320,9 @@
     <Content Include="Views\LeagueTable\AddResult.cshtml" />
     <Content Include="Views\LeagueTable\ListGames.cshtml" />
     <Content Include="Views\Player\Edit.cshtml" />
+    <Content Include="Views\Schedule\ScheduleGame.cshtml" />
+    <Content Include="Views\Schedule\ListScheduledGames.cshtml" />
+    <Content Include="Views\Schedule\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
