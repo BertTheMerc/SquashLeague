@@ -36,7 +36,25 @@ namespace SquashLegaue.Models
         [Required]
         [Display(Name = "Player 2")]
         public int Player2SelectedItemId { get; set; }
-        
+
+        [Required]
+        [Display(Name = "Game Type [L=League & F=Friendly]")]
+        public string GameType { get; set; }
+
+        public string GameTypeDisplay 
+        {
+            get 
+            {
+                switch (GameType)
+                {
+                    case "L" : return "League"; 
+                    case "F" : return "Friendly";
+                }
+
+                return GameType;
+            }
+        }
+
         public IEnumerable<SelectListItem> PlayerList
         {
             get { return new SelectList(players, "Id", "Name"); }

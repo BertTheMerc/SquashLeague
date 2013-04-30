@@ -1,0 +1,53 @@
+﻿@model SquashLegaue.Models.GameResult
+
+@{
+    ViewBag.Title = "Complete";
+}
+
+<h2>Complete</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>GameResult</legend>
+        
+        <div class="editor-label">
+            @Html.DisplayFor(model => model.GameTypeDisplay) played on @Html.DisplayFor(model => model.DateOfGame)
+        </div>
+        
+        <div class="editor-label">
+             Score for @Html.DisplayFor(model => model.Player1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Player1Score)
+            @Html.ValidationMessageFor(model => model.Player1Score)
+        </div>
+
+        <div class="editor-label">
+             Score for @Html.DisplayFor(model => model.Player2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Player2Score)
+            @Html.ValidationMessageFor(model => model.Player2Score)
+        </div>
+        
+        @Html.HiddenFor(model => model.GameType)       
+        @Html.HiddenFor(model => model.Player1SelectedItemId)
+        @Html.HiddenFor(model => model.Player2SelectedItemId)
+        @Html.HiddenFor(model => model.ID)
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

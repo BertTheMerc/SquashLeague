@@ -67,6 +67,7 @@ namespace SquashLegaue.Repo
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
                             Player1Score = int.Parse(dr["Player1Score"].ToString()),
                             Player2Score = int.Parse(dr["Player2Score"].ToString()),
+                            GameType = dr["GameType"].ToString()
                         });
                     }
                 }
@@ -89,6 +90,7 @@ namespace SquashLegaue.Repo
                     sp.Parameters.AddWithValue("Player2", result.Player2SelectedItemId);
                     sp.Parameters.AddWithValue("Player1Score", result.Player1Score);
                     sp.Parameters.AddWithValue("Player2Score", result.Player2Score);
+                    sp.Parameters.AddWithValue("GameType", result.GameType);
                     con.Open();
                     sp.ExecuteNonQuery();
                 }

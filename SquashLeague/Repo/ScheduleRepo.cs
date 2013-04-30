@@ -31,7 +31,8 @@ namespace SquashLegaue.Repo
                             Player1 = dr["Player1Name"].ToString(),
                             Player2 = dr["Player2Name"].ToString(),
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
-                            Player2SelectedItemId = int.Parse(dr["Player2"].ToString())
+                            Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
+                            GameType = dr["GameType"].ToString()
                         });
                     }
                 }
@@ -59,7 +60,8 @@ namespace SquashLegaue.Repo
                             Player1 = dr["Player1Name"].ToString(),
                             Player2 = dr["Player2Name"].ToString(),
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
-                            Player2SelectedItemId = int.Parse(dr["Player2"].ToString())
+                            Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
+                            GameType = dr["GameType"].ToString()
                         });
                     }
                 } 
@@ -69,7 +71,7 @@ namespace SquashLegaue.Repo
 
             return null;
         }
-
+        
         public static void ScheduleGame(Game result)
         {
             if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
@@ -81,6 +83,7 @@ namespace SquashLegaue.Repo
                     sp.Parameters.AddWithValue("DateOfGame", result.DateOfGame);
                     sp.Parameters.AddWithValue("Player1", result.Player1SelectedItemId);
                     sp.Parameters.AddWithValue("Player2", result.Player2SelectedItemId);
+                    sp.Parameters.AddWithValue("GameType", result.GameType);
                     con.Open();
                     sp.ExecuteNonQuery();
                 }
@@ -99,6 +102,7 @@ namespace SquashLegaue.Repo
                     sp.Parameters.AddWithValue("DateOfGame", result.DateOfGame);
                     sp.Parameters.AddWithValue("Player1", result.Player1SelectedItemId);
                     sp.Parameters.AddWithValue("Player2", result.Player2SelectedItemId);
+                    sp.Parameters.AddWithValue("GameType", result.GameType);
                     con.Open();
                     sp.ExecuteNonQuery();
                 }

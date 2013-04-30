@@ -19,7 +19,8 @@ CREATE PROCEDURE [dbo].[EditScheduleGame]
 	@Id int,
 	@DateOfGame datetime,
 	@Player1 int,
-	@Player2 int
+	@Player2 int,
+	@GameType CHAR(1) = 'L'
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -30,7 +31,8 @@ BEGIN
 	SET
        [ScheduledDate] = @DateOfGame,
        [Player1] = @Player1,
-       [Player2] = @Player2
+       [Player2] = @Player2,
+	   [GameType] = @GameType
 	WHERE
 		ID = @ID
 END

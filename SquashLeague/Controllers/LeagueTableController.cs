@@ -10,6 +10,7 @@ namespace SquashLegaue.Controllers
 {   
     using SquashLegaue.Models;
     using SquashLegaue.Repo;
+    using SquashLegaue.BusinessObjects;
 
     public class LeagueTableController : Controller
     {
@@ -30,7 +31,12 @@ namespace SquashLegaue.Controllers
 
             var model = new GameResult();
             model.DateOfGame = DateTime.Today;
-            
+
+            if (string.IsNullOrWhiteSpace(model.GameType))
+            {
+                model.GameType = "L";
+            }
+
             return View(model);
         }
 
@@ -41,7 +47,11 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Player1 = model.PlayerList.Single(x => x.Value == model.Player1SelectedItemId.ToString()).Text;
+                model.Player2 = model.PlayerList.Single(x => x.Value == model.Player2SelectedItemId.ToString()).Text;
+
                 LeagueTableRepo.AddGame(model);
+                Twitter.Tweet(string.Format("GAME RESULT: Result of the Game with {0} & {1} is {2}-{3}.", model.Player1, model.Player2, model.Player1Score, model.Player2Score));
             }
 
             return RedirectToAction("Index", "LeagueTable");
@@ -67,20 +77,6 @@ namespace SquashLegaue.Controllers
             return View(SquashLegaue.Repo.LeagueTableRepo.GetGames());
         }
 
-        [Authorize]
-        public ActionResult Complete(int Id)
-        {
-            if (ModelState.IsValid)
-            {
-                var game = ScheduleRepo.GetScheduledGame(Id);
-                GameResult result = new GameResult();
-                result.DateOfGame = game.DateOfGame;
-                result.Player1SelectedItemId = game.Player1SelectedItemId;
-                result.Player2SelectedItemId = game.Player2SelectedItemId;
-                return View("AddResult", result);
-            }
-
-            return RedirectToAction("ListScheduleGames", "Schedule");
-        }
+       
     }
 }

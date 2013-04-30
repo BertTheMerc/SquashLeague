@@ -26,6 +26,5 @@ FROM
 	dbo.Games 
 	INNER JOIN dbo.Players ON dbo.Games.Player1 = dbo.Players.ID 
 	INNER JOIN dbo.Players AS Players_1 ON dbo.Games.Player2 = Players_1.ID
-
 GO
 

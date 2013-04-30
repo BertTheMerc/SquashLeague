@@ -19,7 +19,8 @@ CREATE PROCEDURE [dbo].[AddGame]
 	@Player1 int,
 	@Player2 int,
 	@Player1Score smallint,
-	@Player2Score smallint
+	@Player2Score smallint,
+	@GameType CHAR(1) = 'L'
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -31,13 +32,15 @@ BEGIN
            ,[Player1]
            ,[Player2]
            ,[Player1Score]
-           ,[Player2Score])
+           ,[Player2Score]
+		   ,GameType)
      VALUES
            (@DateOfGame,
             @Player1,
             @Player2, 
             @Player1Score,
-            @Player2Score)
+            @Player2Score,
+			@GameType)
 
 
 	EXEC GenerateLeagueTable

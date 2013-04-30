@@ -16,6 +16,7 @@ CREATE TABLE [dbo].[Games](
 	[Player2] [smallint] NOT NULL,
 	[Player1Score] [smallint] NOT NULL,
 	[Player2Score] [smallint] NOT NULL,
+	[GameType] [CHAR](1) NULL,
  CONSTRAINT [PK_Games] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC

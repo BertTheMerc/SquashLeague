@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Player2)
         </td>
         <td>
-            @Html.ActionLink("Complete Game", "Complete", "LeagueTable", new { id = item.ID }, new { }) |
+            @Html.ActionLink("Complete Game", "Complete", new { id = item.ID }) |
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
@@ -41,3 +41,5 @@
 }
 
 </table>
+
+@Html.ActionLink("Schedule Game", "ScheduleGame")
