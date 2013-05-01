@@ -23,6 +23,7 @@ namespace SquashLegaue
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

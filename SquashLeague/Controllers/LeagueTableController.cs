@@ -47,11 +47,8 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Player1 = model.PlayerList.Single(x => x.Value == model.Player1SelectedItemId.ToString()).Text;
-                model.Player2 = model.PlayerList.Single(x => x.Value == model.Player2SelectedItemId.ToString()).Text;
-
                 LeagueTableRepo.AddGame(model);
-                Twitter.Tweet(string.Format("GAME RESULT: Result of the Game with {0} & {1} is {2}-{3}.", model.Player1, model.Player2, model.Player1Score, model.Player2Score));
+                Twitter.Tweet(model.TwitterResult);
             }
 
             return RedirectToAction("Index", "LeagueTable");

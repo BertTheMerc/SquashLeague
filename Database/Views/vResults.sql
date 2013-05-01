@@ -21,7 +21,8 @@ SELECT
 	dbo.Players.Name AS Player1Name, 
 	Players_1.Name AS Player2Name, 
 	dbo.Games.Player1, 
-	dbo.Games.Player2
+	dbo.Games.Player2,
+	dbo.Games.GameType
 FROM            
 	dbo.Games 
 	INNER JOIN dbo.Players ON dbo.Games.Player1 = dbo.Players.ID 

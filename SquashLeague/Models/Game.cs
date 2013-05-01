@@ -55,9 +55,42 @@ namespace SquashLegaue.Models
             }
         }
 
+        public string TwitterScheduled
+        {
+            get
+            { 
+                SetPlayerNames();
+                return string.Format("SCHEDULE: {0} to play {1} as a {2} game on the {3}", Player1, Player2, GameTypeDisplay, DateOfGame.ToLongDateString());
+            }
+        }
+
+        public string TwitterEdited
+        {
+            get 
+            {
+                SetPlayerNames();
+                return string.Format("SCHEDULE UPDATE: {0} to play {1} as a {2} game on the {3}", Player1, Player2, GameTypeDisplay, DateOfGame.ToLongDateString());
+            }
+        }
+
+        public string TwitterDelete
+        {
+            get
+            {
+                SetPlayerNames();
+                return string.Format("SCHEDULE UPDATE: Game with {0} & {1} on the {2} has been cancelled.", Player1, Player2, DateOfGame.ToLongDateString());
+            }
+        }
+
         public IEnumerable<SelectListItem> PlayerList
         {
             get { return new SelectList(players, "Id", "Name"); }
+        }
+
+        protected void SetPlayerNames()
+        {
+            Player1 = PlayerList.Single(x => x.Value == Player1SelectedItemId.ToString()).Text;
+            Player2 = PlayerList.Single(x => x.Value == Player2SelectedItemId.ToString()).Text;
         }
     }
 }

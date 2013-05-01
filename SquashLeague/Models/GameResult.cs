@@ -21,5 +21,24 @@ namespace SquashLegaue.Models
         [Required]
         [Display(Name = "Player 2 score")]
         public int Player2Score { get; set; }
+
+        public string TwitterResult 
+        {
+            get
+            {
+                SetPlayerNames();
+                return string.Format("GAME RESULT: Result of the Game play on {4} with {0} & {1} is {2}-{3}.", Player1, Player2, Player1Score, Player2Score, DateOfGame.ToLongDateString());
+            }
+        }
+
+        public string TwitterCompleteScheduledGame
+        {
+            get
+            {
+                SetPlayerNames();
+                return string.Format("GAME RESULT: Result of the {4} game with {0} & {1} is {2}-{3}.", Player1, Player2, Player1Score, Player2Score, GameTypeDisplay);
+            }
+        }
+        
     }
 }

@@ -32,12 +32,8 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                model.Player1 = model.PlayerList.Single(x => x.Value == model.Player1SelectedItemId.ToString()).Text;
-                model.Player2 = model.PlayerList.Single(x => x.Value == model.Player2SelectedItemId.ToString()).Text;
                 ScheduleRepo.ScheduleGame(model);
-
-                Twitter.Tweet(string.Format("SCHEDULE: {0} to play {1} as a {2} game on the {3}", model.Player1, model.Player2, model.GameTypeDisplay, model.DateOfGame.ToLongDateString()));
+                Twitter.Tweet(model.TwitterScheduled);
             }
 
             return RedirectToAction("Index", "LeagueTable");
@@ -58,10 +54,9 @@ namespace SquashLegaue.Controllers
         public ActionResult Edit(Game model)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 ScheduleRepo.EditScheduleGame(model);
-
-                Twitter.Tweet(string.Format("SCHEDULE UPDATE: {0} to play {1} as a {2} game on the {3}", model.Player1, model.Player2, model.GameTypeDisplay, model.DateOfGame.ToLongDateString()));
+                Twitter.Tweet(model.TwitterEdited);
             }
 
             return RedirectToAction("ListScheduledGames", "Schedule");
@@ -82,7 +77,7 @@ namespace SquashLegaue.Controllers
             {
                 Game toBeDeleted = ScheduleRepo.GetScheduledGame(Id);
                 ScheduleRepo.Delete(Id);
-                Twitter.Tweet(string.Format("SCHEDULE UPDATE: Game with {0} & {1} on the {2} has been cancelled.", toBeDeleted.Player1, toBeDeleted.Player2, toBeDeleted.DateOfGame.ToLongDateString()));
+                Twitter.Tweet(toBeDeleted.TwitterDelete);                
             }
 
             return RedirectToAction("ListScheduledGames", "Schedule");
@@ -130,7 +125,7 @@ namespace SquashLegaue.Controllers
                 LeagueTableRepo.AddGame(model);
 
                 ScheduleRepo.Delete(game.ID);
-                Twitter.Tweet(string.Format("GAME RESULT: Result of the {4} game with {0} & {1} is {2}-{3}.", model.Player1, model.Player2, model.Player1Score, model.Player2Score, model.GameTypeDisplay));
+                Twitter.Tweet(model.TwitterCompleteScheduledGame);
             }
 
             return RedirectToAction("Index", "LeagueTable");

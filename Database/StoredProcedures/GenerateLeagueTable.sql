@@ -17,37 +17,39 @@ GO
 CREATE PROCEDURE [dbo].[GenerateLeagueTable] 
 AS
 BEGIN
-TRUNCATE TABLE LeagueTable
+	TRUNCATE TABLE LeagueTable
 
-DECLARE @MaxPlayers smallint
-DECLARE @CurrentPlayer smallint
+	DECLARE @MaxPlayers smallint
+	DECLARE @CurrentPlayer smallint
 
-SELECT @CurrentPlayer = 1
-SELECT @MaxPlayers = (SELECT MAX(ID) FROM Players)
+	SELECT @CurrentPlayer = 1
+	SELECT @MaxPlayers = (SELECT MAX(ID) FROM Players)
 
+	WHILE @CurrentPlayer <= @MaxPlayers
+	BEGIN
+		IF ((SELECT COUNT(1) FROM Players WHERE ID = @CurrentPlayer) > 0)
+		BEGIN
+			INSERT INTO LeagueTable (Player, Matchs, Win, Lost, Draw, GamesWon, GamesLost) VALUES
+			(
+			@CurrentPlayer,
+			--MatchsWon
+			(SELECT COUNT(1) FROM vLeagueResults WHERE Player1=@CurrentPlayer OR Player2=@CurrentPlayer),
+			(SELECT COUNT(1) FROM vLeagueResults WHERE (Player1=@CurrentPlayer AND Player1Score > Player2Score) OR (Player2=@CurrentPlayer AND Player2Score > Player1Score)),
+			(SELECT	COUNT(1) AS MatchsLost FROM vLeagueResults WHERE (Player1=@CurrentPlayer AND Player1Score < Player2Score) OR (Player2=@CurrentPlayer AND Player1Score > Player2Score)),
+			(SELECT COUNT(1) AS MatchsDrawn FROM vLeagueResults WHERE (Player1=@CurrentPlayer AND Player1Score = Player2Score)),
+			(
+				(SELECT ISNULL(SUM(Player1Score), 0) From vLeagueResults WHERE Player1 = @CurrentPlayer) +
+				(SELECT ISNULL(SUM(Player2Score), 0) From vLeagueResults WHERE Player2 = @CurrentPlayer)
+			),
+			(
+				(SELECT ISNULL(SUM(Player2Score), 0) From vLeagueResults WHERE Player1 = @CurrentPlayer) +
+				(SELECT ISNULL(SUM(Player1Score), 0) From vLeagueResults WHERE Player2 = @CurrentPlayer)
+			)
+			)			
+		END
 
-WHILE @CurrentPlayer <= @MaxPlayers
-BEGIN
-
-INSERT INTO LeagueTable (Player, Matchs, Win, Lost, Draw, GamesWon, GamesLost) VALUES
-(
-@CurrentPlayer,
---MatchsWon
-(SELECT COUNT(1) FROM vResults WHERE Player1=@CurrentPlayer OR Player2=@CurrentPlayer),
-(SELECT COUNT(1) FROM vResults WHERE (Player1=@CurrentPlayer AND Player1Score > Player2Score) OR (Player2=@CurrentPlayer AND Player2Score > Player1Score)),
-(SELECT	COUNT(1) AS MatchsLost FROM vResults WHERE (Player1=@CurrentPlayer AND Player1Score < Player2Score) OR (Player2=@CurrentPlayer AND Player1Score > Player2Score)),
-(SELECT COUNT(1) AS MatchsDrawn FROM vResults WHERE (Player1=@CurrentPlayer AND Player1Score = Player2Score)),
-(
-	(SELECT ISNULL(SUM(Player1Score), 0) From vResults WHERE Player1 = @CurrentPlayer) +
-	(SELECT ISNULL(SUM(Player2Score), 0) From vResults WHERE Player2 = @CurrentPlayer)
-),
-(
-	(SELECT ISNULL(SUM(Player2Score), 0) From vResults WHERE Player1 = @CurrentPlayer) +
-	(SELECT ISNULL(SUM(Player1Score), 0) From vResults WHERE Player2 = @CurrentPlayer)
-)
-)
-SELECT @CurrentPlayer = @Currentplayer+1
-END
+		SELECT @CurrentPlayer = @Currentplayer+1
+	END
 END
 
 
