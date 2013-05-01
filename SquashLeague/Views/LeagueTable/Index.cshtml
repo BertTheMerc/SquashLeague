@@ -1,13 +1,43 @@
 ﻿@model IEnumerable<SquashLegaue.Models.LeagueTable>
-
-<h1>@ViewBag.Title.</h1>
 <h2>@ViewBag.Message</h2>
-
 <table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+
+        @if (ViewContext.HttpContext.GetOverriddenBrowser().IsMobileDevice)
+        { 
+            <th>
+                M
+            </th>
+            <th>
+                W
+            </th>
+            <th>
+                D
+            </th>
+            <th>
+                L
+            </th>
+            <th>
+                GW
+            </th>
+            <th>
+                GL
+            </th>
+            <th>
+                GD
+            </th>
+            <th>
+                P
+            </th>
+            <th>
+                W%
+            </th>
+        }
+        else
+        {
         <th>
             @Html.DisplayNameFor(model => model.Matchs)
         </th>
@@ -35,7 +65,7 @@
         <th>
             @Html.DisplayNameFor(model => model.WinPercentage)
         </th>
-        <th></th>
+        }
     </tr>
 
 @foreach (var item in Model) {
@@ -74,9 +104,7 @@
 }
 </table>
 
-<p>
-    @Html.ActionLink("Schedule Game", "ScheduleGame", "Schedule") |
-    @Html.ActionLink("Scheduled Games List", "ListScheduledGames", "Schedule") |
-    @Html.ActionLink("Add unscheduled game result", "AddResult", "LeagueTable") |
-    @Html.ActionLink("List games", "ListGames", "LeagueTable")
-</p>
+<div data-role="footer">
+    @Html.ActionLink("Add unscheduled game result", "AddResult", "LeagueTable")@Html.ActionLink("List Games", "ListGames", "LeagueTable")
+</div>
+   

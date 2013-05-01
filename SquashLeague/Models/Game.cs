@@ -21,6 +21,7 @@ namespace SquashLegaue.Models
         [Required]
         [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime DateOfGame { get; set; }
 
         [Display(Name = "Player 1 Name")]

@@ -14,7 +14,7 @@
     </head> 
 <body> 
 
-    <div data-role="page" data-theme="a">
+    <div data-role="page" data-theme="d">
         @Html.Partial("_ViewSwitcher")
 
         <div data-role="header">
@@ -26,7 +26,11 @@
             @RenderBody()		
         </div>
 
+        <div data-role="footer">
+            @Html.ActionLink("Home", "Index", "Home")@Html.ActionLink("Schedule", "ListScheduledGames", "Schedule")@Html.ActionLink("Table", "Index", "LeagueTable")@Html.ActionLink("Players", "Index", "Player")
+        </div>
     </div>
 
+    @RenderSection("scripts", required: false)
 </body>
 </html>
