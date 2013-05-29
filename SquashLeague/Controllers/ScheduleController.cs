@@ -18,7 +18,7 @@ namespace SquashLegaue.Controllers
             ViewBag.Title = "Schedule";
             ViewBag.Message = "Schedule a game to be played";
 
-            var model = new Game();
+            var model = new Game(this.HttpContext.Application["Players"] as List<Player>);
             model.DateOfGame = DateTime.Today;
             model.GameType = "L";
 
@@ -44,7 +44,7 @@ namespace SquashLegaue.Controllers
         {
             ViewBag.Title = "Edit Scheduled game";
             ViewBag.Message = "Schedule a game to be edited";
-            var model = ScheduleRepo.GetScheduledGame(Id);
+            var model = ScheduleRepo.GetScheduledGame(Id, this.HttpContext.Application["Players"] as List<Player>);
             return View(model);
         }
 
@@ -67,7 +67,7 @@ namespace SquashLegaue.Controllers
             ViewBag.Title = "The scheduled games";
             ViewBag.Message = "Here are the list of scheduled games";
 
-            return View(SquashLegaue.Repo.ScheduleRepo.GetScheduledGames());
+            return View(SquashLegaue.Repo.ScheduleRepo.GetScheduledGames(this.HttpContext.Application["Players"] as List<Player>));
         }
 
         [Authorize]
@@ -75,7 +75,7 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-                Game toBeDeleted = ScheduleRepo.GetScheduledGame(Id);
+                Game toBeDeleted = ScheduleRepo.GetScheduledGame(Id, this.HttpContext.Application["Players"] as List<Player>);
                 ScheduleRepo.Delete(Id);
                 Twitter.Tweet(toBeDeleted.TwitterDelete);                
             }
@@ -88,12 +88,12 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-                var game = ScheduleRepo.GetScheduledGame(Id);
+                var game = ScheduleRepo.GetScheduledGame(Id, this.HttpContext.Application["Players"] as List<Player>);
 
                 ViewBag.Title = "Add Result";
                 ViewBag.Message = "Add a result of a scheduled game";
 
-                GameResult result = new GameResult();
+                GameResult result = new GameResult(this.HttpContext.Application["Players"] as List<Player>);
                 result.DateOfGame = game.DateOfGame;
                 result.Player1SelectedItemId = game.Player1SelectedItemId;
                 result.Player1 = game.Player1;
@@ -114,7 +114,7 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-                var game = ScheduleRepo.GetScheduledGame(model.ID);
+                var game = ScheduleRepo.GetScheduledGame(model.ID, this.HttpContext.Application["Players"] as List<Player>);
 
                 model.Player1SelectedItemId = game.Player1SelectedItemId;
                 model.Player1 = game.Player1;

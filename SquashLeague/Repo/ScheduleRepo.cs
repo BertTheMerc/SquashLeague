@@ -12,7 +12,7 @@ namespace SquashLegaue.Repo
 
     public class ScheduleRepo
     {
-        public static List<Game> GetScheduledGames()
+        public static List<Game> GetScheduledGames(List<Player> Players)
         {
             if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
             {
@@ -24,14 +24,14 @@ namespace SquashLegaue.Repo
                     da.Fill(ds);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        table.Add(new Game()
+                        table.Add(new Game(Players)
                         {
                             ID = int.Parse(dr["ID"].ToString()),
-                            DateOfGame = DateTime.Parse(dr["ScheduledDate"].ToString()),
-                            Player1 = dr["Player1Name"].ToString(),
-                            Player2 = dr["Player2Name"].ToString(),
+                            DateOfGame = DateTime.Parse(dr["ScheduledDate"].ToString()),                            
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
+                            //Player1 = PlayerRepo.Get(int.Parse(dr["Player1"].ToString()),
+                            //Player2 = PlayerRepo.Get(int.Parse(dr["Player2"].ToString()),
                             GameType = dr["GameType"].ToString()
                         });
                     }
@@ -42,7 +42,7 @@ namespace SquashLegaue.Repo
             return null;
         }
 
-        public static Game GetScheduledGame(int ID)
+        public static Game GetScheduledGame(int ID, List<Player> Players)
         {
             if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
             {
@@ -53,12 +53,12 @@ namespace SquashLegaue.Repo
                     da.Fill(ds);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        return (new Game()
+                        return (new Game(Players)
                         {
                             ID = int.Parse(dr["ID"].ToString()),
                             DateOfGame = DateTime.Parse(dr["ScheduledDate"].ToString()),
-                            Player1 = dr["Player1Name"].ToString(),
-                            Player2 = dr["Player2Name"].ToString(),
+                            //Player1 = dr["Player1Name"].ToString(),
+                            //Player2 = dr["Player2Name"].ToString(),
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
                             GameType = dr["GameType"].ToString()

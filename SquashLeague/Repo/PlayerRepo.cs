@@ -12,26 +12,47 @@ namespace SquashLegaue.Repo
 
     public class PlayerRepo
     {
+
+        public static void Add(Player player)
+        {
+            if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    SqlCommand sp = new SqlCommand("AddPlayer", con);
+                    sp.CommandType = CommandType.StoredProcedure;
+                    sp.Parameters.AddWithValue("Name", player.Name);
+                    sp.Parameters.AddWithValue("Nickname", player.Nickname);
+                    sp.Parameters.AddWithValue("Email", player.Email);
+
+                    con.Open();
+                    sp.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static List<Player> GetList()
         {
             if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                SqlDataAdapter da = new SqlDataAdapter("select * from Players ORDER BY name", con);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-
-                List<Player> result = new List<Player>();
-                foreach (DataRow dr in ds.Tables[0].Rows)
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
                 {
-                    result.Add(new Player()
+                    SqlDataAdapter da = new SqlDataAdapter("select * from Players ORDER BY name", con);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+
+                    List<Player> result = new List<Player>();
+                    foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        Id = int.Parse(dr["Id"].ToString()),
-                        Name = dr["Name"].ToString(),
-                        Nickname = (dr["NickName"].ToString())
-                    });
+                        result.Add(new Player()
+                        {
+                            Id = int.Parse(dr["Id"].ToString()),
+                            Name = dr["Name"].ToString(),
+                            Nickname = (dr["NickName"].ToString())
+                        });
+                    }
+                    return result;
                 }
-                return result;
             }
 
             return null;

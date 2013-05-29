@@ -45,7 +45,7 @@ namespace SquashLegaue.Repo
             return null;
         }
 
-        public static List<GameResult> GetGames()
+        public static List<GameResult> GetGames(List<Player> Players)
         {
             if (ConfigurationManager.ConnectionStrings["DefaultConnection"] != null)
             {
@@ -57,12 +57,12 @@ namespace SquashLegaue.Repo
                     da.Fill(ds);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        table.Add(new GameResult()
+                        table.Add(new GameResult(Players)
                         {
                             ID = int.Parse(dr["ID"].ToString()),
                             DateOfGame = DateTime.Parse(dr["Played"].ToString()),
-                            Player1 = dr["Player1Name"].ToString(),
-                            Player2 = dr["Player2Name"].ToString(),
+                            //Player1 = dr["Player1Name"].ToString(),
+                            //Player2 = dr["Player2Name"].ToString(),
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
                             Player1Score = int.Parse(dr["Player1Score"].ToString()),

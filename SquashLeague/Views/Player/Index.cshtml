@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<SquashLegaue.Models.Player>
 <h2>@ViewBag.Message</h2>
+
+<div id="AddPlayer">
+    @Html.ActionLink("Add player", "Add");
+</div>
 <table>
     <tr>
         <th>

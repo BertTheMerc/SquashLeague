@@ -9,6 +9,9 @@ using System.Web.Routing;
 
 namespace SquashLegaue
 {
+    using SquashLegaue.Models;
+    using SquashLegaue.Repo;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
@@ -24,6 +27,8 @@ namespace SquashLegaue
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
+
+            Application["Players"] = PlayerRepo.GetList();
         }
     }
 }

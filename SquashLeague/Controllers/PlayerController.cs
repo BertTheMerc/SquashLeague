@@ -21,6 +21,25 @@ namespace SquashLegaue.Controllers
         }
 
         [Authorize]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Add(Player model)
+        {
+            if (ModelState.IsValid)
+            {
+                PlayerRepo.Add(model);
+                this.HttpContext.Application["Players"] = PlayerRepo.GetList();
+            }
+
+            return RedirectToAction("Index", "Player");
+        }
+
+        [Authorize]
         public ActionResult Edit(int Id)
         {
             ViewBag.Title = "Edit player details";

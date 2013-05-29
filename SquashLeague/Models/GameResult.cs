@@ -27,7 +27,7 @@ namespace SquashLegaue.Models
             get
             {
                 SetPlayerNames();
-                return string.Format("GAME RESULT: Result of the Game play on {4} with {0} & {1} is {2}-{3}.", Player1, Player2, Player1Score, Player2Score, DateOfGame.ToLongDateString());
+                return string.Format("GAME RESULT: Result of the Game play on {4} with {0} & {1} is {2}-{3}.", Player1.Nickname, Player2.Nickname, Player1Score, Player2Score, DateOfGame.ToLongDateString());
             }
         }
 
@@ -36,9 +36,13 @@ namespace SquashLegaue.Models
             get
             {
                 SetPlayerNames();
-                return string.Format("GAME RESULT: Result of the {4} game with {0} & {1} is {2}-{3}.", Player1, Player2, Player1Score, Player2Score, GameTypeDisplay);
+                return string.Format("GAME RESULT: Result of the {4} game with {0} & {1} is {2}-{3}.", Player1.Nickname, Player2.Nickname, Player1Score, Player2Score, GameTypeDisplay);
             }
         }
-        
+
+        public GameResult(List<Player> Players) : base(Players)
+        {
+            
+        }
     }
 }

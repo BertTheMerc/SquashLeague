@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,14 +21,13 @@ namespace SquashLegaue.Controllers
             return View(SquashLegaue.Repo.LeagueTableRepo.Get());
         }
 
-
         [Authorize]
         public ActionResult AddResult()
         {
             ViewBag.Title = "Add Result";
             ViewBag.Message = "Add a result of a game";
 
-            var model = new GameResult();
+            var model = new GameResult(this.HttpContext.Application["Players"] as List<Player>);
             model.DateOfGame = DateTime.Today;
 
             if (string.IsNullOrWhiteSpace(model.GameType))
@@ -65,15 +63,12 @@ namespace SquashLegaue.Controllers
             return RedirectToAction("Index", "LeagueTable");
         }
 
-
         public ActionResult ListGames()
         {
             ViewBag.Title = "The League table";
             ViewBag.Message = "Here are the list of completed games";
 
-            return View(SquashLegaue.Repo.LeagueTableRepo.GetGames());
+            return View(SquashLegaue.Repo.LeagueTableRepo.GetGames(this.HttpContext.Application["Players"] as List<Player>));
         }
-
-       
     }
 }
