@@ -398,7 +398,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>C:\Code\Dev\GitHub\SquashLeague\packages\dotless.1.3.1.0\tool\dotless.compiler.EXE -m C:\Code\Dev\GitHub\SquashLeague\SquashLeague\Content\*.less
+    <PostBuildEvent>$(SolutionDir)packages\dotless.1.3.1.0\tool\dotless.compiler.EXE -m $(ProjectDir)Content\*.less
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
