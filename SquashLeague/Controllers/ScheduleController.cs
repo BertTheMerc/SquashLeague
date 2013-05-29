@@ -32,11 +32,12 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.SetPlayers(this.HttpContext.Application["Players"] as List<Player>);
                 ScheduleRepo.ScheduleGame(model);
                 Twitter.Tweet(model.TwitterScheduled);
             }
 
-            return RedirectToAction("Index", "LeagueTable");
+            return RedirectToAction("ListScheduledGames", "Schedule");
         }
 
         [Authorize]

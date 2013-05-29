@@ -14,7 +14,7 @@ namespace SquashLegaue.Models
 
     public class Game
     {
-        private readonly List<Player> players;
+        private List<Player> players;
 
         public int ID { get; set; }
         
@@ -88,15 +88,24 @@ namespace SquashLegaue.Models
             get { return new SelectList(players, "Id", "Name"); }
         }
 
-        protected void SetPlayerNames()
+        public void SetPlayerNames()
         {
             Player1 = players.Single(x => x.Id == Player1SelectedItemId);
             Player2 = players.Single(x => x.Id == Player2SelectedItemId);
         }
+            
+        public void SetPlayers(List<Player> players)
+        {
+            this.players = players;
+        }
 
         public Game(List<Player> playerList) 
         {
-            players = playerList;
+            this.players = playerList;
+        }
+
+        public Game()
+        {
         }
     }
 }

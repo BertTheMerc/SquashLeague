@@ -27,10 +27,10 @@
             @Html.DisplayFor(modelItem => item.DateOfGame)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Player1)
+            @Html.DisplayFor(modelItem => item.Player1.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Player2)
+            @Html.DisplayFor(modelItem => item.Player2.Name)
         </td>
         <td>
             @Html.ActionLink("Complete Game", "Complete", new { id = item.ID }) |

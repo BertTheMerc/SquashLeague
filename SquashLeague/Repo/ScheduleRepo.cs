@@ -24,7 +24,7 @@ namespace SquashLegaue.Repo
                     da.Fill(ds);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        table.Add(new Game(Players)
+                        var item = new Game(Players)
                         {
                             ID = int.Parse(dr["ID"].ToString()),
                             DateOfGame = DateTime.Parse(dr["ScheduledDate"].ToString()),                            
@@ -33,8 +33,12 @@ namespace SquashLegaue.Repo
                             //Player1 = PlayerRepo.Get(int.Parse(dr["Player1"].ToString()),
                             //Player2 = PlayerRepo.Get(int.Parse(dr["Player2"].ToString()),
                             GameType = dr["GameType"].ToString()
-                        });
+                        };
+                        item.SetPlayerNames();
+                        table.Add(item);
                     }
+
+
                 }
                 return table;
             }

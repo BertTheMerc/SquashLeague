@@ -45,6 +45,7 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.SetPlayers(this.HttpContext.Application["Players"] as List<Player>);
                 LeagueTableRepo.AddGame(model);
                 Twitter.Tweet(model.TwitterResult);
             }

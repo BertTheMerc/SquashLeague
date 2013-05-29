@@ -42,7 +42,10 @@ namespace SquashLegaue.Models
 
         public GameResult(List<Player> Players) : base(Players)
         {
-            
+        }
+
+        public GameResult() : base() 
+        {
         }
     }
 }
