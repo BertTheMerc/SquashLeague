@@ -18,7 +18,7 @@ namespace SquashLegaue.Controllers
             ViewBag.Title = "Schedule";
             ViewBag.Message = "Schedule a game to be played";
 
-            var model = new Game(this.HttpContext.Application["Players"] as List<Player>);
+            var model = new Game();
             model.DateOfGame = DateTime.Today;
             model.GameType = "L";
 
@@ -32,7 +32,6 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.SetPlayers(this.HttpContext.Application["Players"] as List<Player>);
                 ScheduleRepo.ScheduleGame(model);
                 Twitter.Tweet(model.TwitterScheduled);
             }
@@ -94,7 +93,7 @@ namespace SquashLegaue.Controllers
                 ViewBag.Title = "Add Result";
                 ViewBag.Message = "Add a result of a scheduled game";
 
-                GameResult result = new GameResult(this.HttpContext.Application["Players"] as List<Player>);
+                GameResult result = new GameResult();
                 result.DateOfGame = game.DateOfGame;
                 result.Player1SelectedItemId = game.Player1SelectedItemId;
                 result.Player1 = game.Player1;

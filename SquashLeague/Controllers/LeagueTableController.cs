@@ -27,7 +27,7 @@ namespace SquashLegaue.Controllers
             ViewBag.Title = "Add Result";
             ViewBag.Message = "Add a result of a game";
 
-            var model = new GameResult(this.HttpContext.Application["Players"] as List<Player>);
+            var model = new GameResult();
             model.DateOfGame = DateTime.Today;
 
             if (string.IsNullOrWhiteSpace(model.GameType))
@@ -45,7 +45,6 @@ namespace SquashLegaue.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.SetPlayers(this.HttpContext.Application["Players"] as List<Player>);
                 LeagueTableRepo.AddGame(model);
                 Twitter.Tweet(model.TwitterResult);
             }
@@ -69,7 +68,7 @@ namespace SquashLegaue.Controllers
             ViewBag.Title = "The League table";
             ViewBag.Message = "Here are the list of completed games";
 
-            return View(SquashLegaue.Repo.LeagueTableRepo.GetGames(this.HttpContext.Application["Players"] as List<Player>));
+            return View(SquashLegaue.Repo.LeagueTableRepo.GetGames());
         }
     }
 }

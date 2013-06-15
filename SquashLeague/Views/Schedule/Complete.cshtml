@@ -18,7 +18,7 @@
         </div>
         
         <div class="editor-label">
-             Score for @Html.DisplayFor(model => model.Player1)
+             Score for @Html.DisplayFor(model => model.Player1.Name)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Player1Score)
@@ -26,7 +26,7 @@
         </div>
 
         <div class="editor-label">
-             Score for @Html.DisplayFor(model => model.Player2)
+             Score for @Html.DisplayFor(model => model.Player2.Name)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Player2Score)

@@ -15,10 +15,10 @@
             @Html.DisplayNameFor(model => model.DateOfGame)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Player1)
+            @Html.DisplayNameFor(model => model.Player1.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Player2)
+            @Html.DisplayNameFor(model => model.Player2.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Player1Score)
@@ -38,10 +38,10 @@
             @Html.DisplayFor(modelItem => item.DateOfGame)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Player1)
+            @Html.DisplayFor(modelItem => item.Player1.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Player2)
+            @Html.DisplayFor(modelItem => item.Player2.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Player1Score)

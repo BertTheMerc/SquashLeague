@@ -24,17 +24,14 @@ namespace SquashLegaue.Repo
                     da.Fill(ds);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        var item = new Game(Players)
+                        var item = new Game()
                         {
                             ID = int.Parse(dr["ID"].ToString()),
                             DateOfGame = DateTime.Parse(dr["ScheduledDate"].ToString()),                            
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
-                            //Player1 = PlayerRepo.Get(int.Parse(dr["Player1"].ToString()),
-                            //Player2 = PlayerRepo.Get(int.Parse(dr["Player2"].ToString()),
                             GameType = dr["GameType"].ToString()
                         };
-                        item.SetPlayerNames();
                         table.Add(item);
                     }
 
@@ -57,12 +54,10 @@ namespace SquashLegaue.Repo
                     da.Fill(ds);
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        return (new Game(Players)
+                        return (new Game()
                         {
                             ID = int.Parse(dr["ID"].ToString()),
                             DateOfGame = DateTime.Parse(dr["ScheduledDate"].ToString()),
-                            //Player1 = dr["Player1Name"].ToString(),
-                            //Player2 = dr["Player2Name"].ToString(),
                             Player1SelectedItemId = int.Parse(dr["Player1"].ToString()),
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
                             GameType = dr["GameType"].ToString()

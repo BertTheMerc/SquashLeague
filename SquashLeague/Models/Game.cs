@@ -15,6 +15,8 @@ namespace SquashLegaue.Models
     public class Game
     {
         private List<Player> players;
+        private int _player1ID;
+        private int _player2ID;
 
         public int ID { get; set; }
         
@@ -32,11 +34,33 @@ namespace SquashLegaue.Models
 
         [Required]
         [Display(Name = "Player 1")]
-        public int Player1SelectedItemId { get; set; }
-        
+        public int Player1SelectedItemId {
+
+            get { return _player1ID; }
+            set { 
+                    if (_player1ID != value)
+                    {
+                        _player1ID = value;
+                        Player1 = players.Single(x => x.Id == _player1ID);
+                    }
+            }
+        }
+
         [Required]
         [Display(Name = "Player 2")]
-        public int Player2SelectedItemId { get; set; }
+        public int Player2SelectedItemId
+        {
+
+            get { return _player2ID; }
+            set
+            {
+                if (_player2ID != value)
+                {
+                    _player2ID = value;
+                    Player2 = players.Single(x => x.Id == _player2ID);
+                }
+            }
+        }
 
         [Required]
         [Display(Name = "Game Type [L=League & F=Friendly]")]
@@ -60,7 +84,6 @@ namespace SquashLegaue.Models
         {
             get
             { 
-                SetPlayerNames();
                 return string.Format("SCHEDULE: {0} to play {1} as a {2} game on the {3}", Player1.Nickname, Player2.Nickname, GameTypeDisplay, DateOfGame.ToLongDateString());
             }
         }
@@ -69,7 +92,6 @@ namespace SquashLegaue.Models
         {
             get 
             {
-                SetPlayerNames();
                 return string.Format("SCHEDULE UPDATE: {0} to play {1} as a {2} game on the {3}", Player1.Nickname, Player2.Nickname, GameTypeDisplay, DateOfGame.ToLongDateString());
             }
         }
@@ -78,9 +100,14 @@ namespace SquashLegaue.Models
         {
             get
             {
-                SetPlayerNames();
                 return string.Format("SCHEDULE UPDATE: Game with {0} & {1} on the {2} has been cancelled.", Player1.Nickname, Player2.Nickname, DateOfGame.ToLongDateString());
             }
+        }
+
+        private void SetPlayerNames()
+        {
+           
+            Player2 = players.Single(x => x.Id == Player2SelectedItemId);
         }
 
         public IEnumerable<SelectListItem> PlayerList
@@ -88,24 +115,10 @@ namespace SquashLegaue.Models
             get { return new SelectList(players, "Id", "Name"); }
         }
 
-        public void SetPlayerNames()
-        {
-            Player1 = players.Single(x => x.Id == Player1SelectedItemId);
-            Player2 = players.Single(x => x.Id == Player2SelectedItemId);
-        }
-            
-        public void SetPlayers(List<Player> players)
-        {
-            this.players = players;
-        }
-
-        public Game(List<Player> playerList) 
-        {
-            this.players = playerList;
-        }
-
         public Game()
         {
+            var cache = new PlayerCache();
+            this.players = cache.GetPlayers();
         }
     }
 }
