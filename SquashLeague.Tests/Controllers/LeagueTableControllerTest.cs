@@ -12,7 +12,7 @@ namespace SquashLegaue.Tests.Controllers
     [TestClass]
     public class LeagueTableControllerTest
     {
-        [TestMethod]
+       
         public void Index()
         {
             // Arrange
