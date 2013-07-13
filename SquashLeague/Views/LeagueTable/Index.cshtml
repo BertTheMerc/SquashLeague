@@ -1,109 +1,123 @@
-﻿@model IEnumerable<SquashLegaue.Models.LeagueTable>
+﻿@model SquashLegaue.Models.LegaueTableResults
 <h2>@ViewBag.Message</h2>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
 
-        @if (ViewContext.HttpContext.GetOverriddenBrowser().IsMobileDevice)
-        { 
-            <th>
-                M
-            </th>
-            <th>
-                W
-            </th>
-            <th>
-                D
-            </th>
-            <th>
-                L
-            </th>
-            <th>
-                GW
-            </th>
-            <th>
-                GL
-            </th>
-            <th>
-                GD
-            </th>
-            <th>
-                P
-            </th>
-            <th>
-                W%
-            </th>
+<div id="LeagueTableResults">
+    <div id="Optons">
+        @using (Html.BeginForm()) {
+            @Html.DisplayNameFor(model => model.SelectedResultTypeID)
+            @Html.DropDownListFor( model => model.SelectedResultTypeID,  Model.LeagueResultTypes, string.Empty )<input type="submit" value="Refresh" />
+            @Html.DisplayNameFor(model => model.LeagueData)
+            @Html.CheckBoxFor(model => model.LeagueData, "League Data")
         }
-        else
-        {
-        <th>
-            @Html.DisplayNameFor(model => model.Matchs)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Win)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Draw)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GamesWon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GamesLost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GamesDiff)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Points)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WinPercentage)
-        </th>
-        }
-    </tr>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Matchs)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Win)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Draw)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GamesWon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GamesLost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GamesDiff)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Points)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WinPercentage)
-        </td>
-    </tr>
-}
-</table>
+    <div id="Table">
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Results[0].Name)
+                </th>
 
+                @if (ViewContext.HttpContext.GetOverriddenBrowser().IsMobileDevice)
+                { 
+                    <th>
+                        M
+                    </th>
+                    <th>
+                        W
+                    </th>
+                    <th>
+                        D
+                    </th>
+                    <th>
+                        L
+                    </th>
+                    <th>
+                        GW
+                    </th>
+                    <th>
+                        GL
+                    </th>
+                    <th>
+                        GD
+                    </th>
+                    <th>
+                        P
+                    </th>
+                    <th>
+                        W%
+                    </th>
+                }
+                else
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].Matchs)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].Win)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].Draw)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].Lost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].GamesWon)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].GamesLost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].GamesDiff)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].Points)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Results[0].WinPercentage)
+                    </th>
+                }
+            </tr>
+
+            @foreach (var item in Model.Results)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Matchs)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Win)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Draw)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GamesWon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GamesLost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GamesDiff)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Points)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WinPercentage)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
 <div data-role="footer">
     @Html.ActionLink("Add game result", "AddResult", "LeagueTable")@Html.ActionLink("List Games", "ListGames", "LeagueTable")
 </div>

@@ -215,9 +215,11 @@
     <Compile Include="Interface\ICacheProvider.cs" />
     <Compile Include="Interface\IPlayerInterface.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\LeagueResultType.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameResult.cs" />
     <Compile Include="Models\LeagueTable.cs" />
+    <Compile Include="Models\LegaueTableResults.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerList.cs" />
     <Compile Include="PlayerCache.cs" />

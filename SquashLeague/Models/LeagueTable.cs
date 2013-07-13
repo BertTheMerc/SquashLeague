@@ -32,7 +32,7 @@ namespace SquashLegaue.Models
         [Display(Name = "Games +/-")]
         public int GamesDiff { get; set; }
 
-        [Display(Name = "Ponits")]
+        [Display(Name = "Points")]
         public int Points { get; set; }
 
         [Display(Name = "Win%")]

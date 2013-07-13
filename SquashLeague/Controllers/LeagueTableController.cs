@@ -18,7 +18,19 @@ namespace SquashLegaue.Controllers
             ViewBag.Title = "The League table";
             ViewBag.Message = "Here are the current standings.";
 
-            return View(SquashLegaue.Repo.LeagueTableRepo.Get());
+            LegaueTableResults model = new LegaueTableResults();
+            model.Results = SquashLegaue.Repo.LeagueTableRepo.Get(model);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(LegaueTableResults Model)
+        {
+            ViewBag.Title = "The League table";
+            ViewBag.Message = "Here are the current standings.";
+
+            Model.Results = SquashLegaue.Repo.LeagueTableRepo.Get(Model);
+            return View(Model);
         }
 
         [Authorize]

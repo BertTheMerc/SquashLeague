@@ -22,6 +22,10 @@ namespace SquashLegaue.Models
         [Display(Name = "Player 2 score")]
         public int Player2Score { get; set; }
 
+        [Display(Name = "Comments")]
+        public string Comments { get; set; }
+
+
         public string TwitterResult 
         {
             get

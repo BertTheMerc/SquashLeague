@@ -60,7 +60,10 @@
             @Html.EditorFor(model => model.Player2Score)
             @Html.ValidationMessageFor(model => model.Player2Score)
         </div>
-
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comments)
+            @Html.ValidationMessageFor(model => model.Comments)
+        </div>
         <p>
             <input type="submit" value="Add Result" />
         </p>

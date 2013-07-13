@@ -9,10 +9,11 @@ using SquashLegaue.Models;
 
 namespace SquashLegaue.Interface
 {
-    public interface IPlayerRepository
+    public interface ISiteRepository
     {
         void ClearCache();
         List<Player> GetPlayers();
+        List<LeagueResultType> GetLeageResultTypes();
     }
 
 }

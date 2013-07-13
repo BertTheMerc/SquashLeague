@@ -117,7 +117,7 @@ namespace SquashLegaue.Models
 
         public Game()
         {
-            var cache = new PlayerCache();
+            var cache = new SiteCache();
             this.players = cache.GetPlayers();
         }
     }

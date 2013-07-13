@@ -27,8 +27,6 @@ namespace SquashLegaue
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
-
-            Application["Players"] = PlayerRepo.GetList();
         }
     }
 }
