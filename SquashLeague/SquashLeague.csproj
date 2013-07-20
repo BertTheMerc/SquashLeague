@@ -235,6 +235,9 @@
     <Content Include="Content\Results.less" />
     <Content Include="Content\GameList.css" />
     <Content Include="Content\GameList.less" />
+    <Content Include="Images\-.png" />
+    <Content Include="Images\-_small.png" />
+    <Content Include="Images\-_tiny.png" />
     <Content Include="Images\0.png" />
     <Content Include="Images\0_small.png" />
     <Content Include="Images\0_tiny.png" />
