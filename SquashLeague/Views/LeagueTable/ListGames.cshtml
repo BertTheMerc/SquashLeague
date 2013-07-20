@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<SquashLegaue.Models.GameResult>
-
+@using SquashLegaue.Extensions
 @{
     ViewBag.Title = "ListGames";
 }
 
 <h2>ListGames</h2>
 
-<table>
+<table id="GameList">
     <tr>
         <th>
             Game type
@@ -18,13 +18,13 @@
             @Html.DisplayNameFor(model => model.Player1.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Player2.Name)
+            
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Player1Score)
+           
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Player2Score)
+              @Html.DisplayNameFor(model => model.Player2.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comments)
@@ -44,13 +44,13 @@
             @Html.DisplayFor(modelItem => item.Player1.Name)
         </td>
         <td>
+            @Html.Score(item.Player1Score, false)
+        </td>
+        <td>
+            @Html.Score(item.Player2Score, false)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Player2.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Player1Score)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Player2Score)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Comments)

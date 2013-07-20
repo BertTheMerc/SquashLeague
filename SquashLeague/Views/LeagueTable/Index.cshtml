@@ -2,16 +2,16 @@
 <h2>@ViewBag.Message</h2>
 
 <div id="LeagueTableResults">
-    <div id="Optons">
+    <div id="Options">
         @using (Html.BeginForm()) {
             @Html.DisplayNameFor(model => model.SelectedResultTypeID)
             @Html.DropDownListFor( model => model.SelectedResultTypeID,  Model.LeagueResultTypes, string.Empty )<input type="submit" value="Refresh" />
             @Html.DisplayNameFor(model => model.LeagueData)
-            @Html.CheckBoxFor(model => model.LeagueData, "League Data")
+            @Html.CheckBoxFor(model => model.LeagueData, "Use only league results")
         }
     </div>
 
-    <div id="Table">
+    <div id="LeagueTable">
         <table>
             <tr>
                 <th>
@@ -87,31 +87,31 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Matchs)
+                        @Html.Score(item.Matchs, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Win)
+                        @Html.Score(item.Win, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Draw)
+                        @Html.Score(item.Draw, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Lost)
+                        @Html.Score(item.Lost, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.GamesWon)
+                        @Html.Score(item.GamesWon, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.GamesLost)
+                        @Html.Score(item.GamesLost, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.GamesDiff)
+                        @Html.Score(item.GamesDiff, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Points)
+                        @Html.Score(item.Points, true)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.WinPercentage)
+                        @Html.Score(item.WinPercentage, true)
                     </td>
                 </tr>
             }

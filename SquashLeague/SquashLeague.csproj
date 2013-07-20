@@ -208,6 +208,7 @@
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ViewSwitcherController.cs" />
+    <Compile Include="Extensions\ScoreDisplay.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +231,38 @@
     <Compile Include="Repo\ScheduleRepo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Results.css" />
+    <Content Include="Content\Results.less" />
+    <Content Include="Content\GameList.css" />
+    <Content Include="Content\GameList.less" />
+    <Content Include="Images\0.png" />
+    <Content Include="Images\0_small.png" />
+    <Content Include="Images\0_tiny.png" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\1_small.png" />
+    <Content Include="Images\1_tiny.png" />
+    <Content Include="Images\2.png" />
+    <Content Include="Images\2_small.png" />
+    <Content Include="Images\2_tiny.png" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\3_small.png" />
+    <Content Include="Images\3_tiny.png" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\4_small.png" />
+    <Content Include="Images\4_tiny.png" />
+    <Content Include="Images\5.png" />
+    <Content Include="Images\5_small.png" />
+    <Content Include="Images\5_tiny.png" />
+    <Content Include="Images\6.png" />
+    <Content Include="Images\6_small.png" />
+    <Content Include="Images\6_tiny.png" />
+    <Content Include="Images\7.png" />
+    <Content Include="Images\7_small.png" />
+    <Content Include="Images\7_tiny.png" />
+    <Content Include="Images\8.png" />
+    <Content Include="Images\8_small.png" />
+    <Content Include="Images\8_tiny.png" />
+    <Content Include="Images\9.png" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\ajax-loader.png" />
     <Content Include="Content\images\icons-18-black.png" />
@@ -303,6 +336,8 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\AppHarbour.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\9_small.png" />
+    <Content Include="Images\9_tiny.png" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -393,7 +428,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>50931</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49884/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

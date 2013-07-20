@@ -25,6 +25,15 @@ namespace SquashLegaue.Models
         [Display(Name = "Comments")]
         public string Comments { get; set; }
 
+        public string Player1ScoreImage
+        {
+            get { return "<img src='/images/" + Player1Score + ".png'>"; }
+        }
+
+        public string Player2ScoreImage
+        {
+            get { return "<img src='/images/" + Player2Score + ".png'>"; }
+        }
 
         public string TwitterResult 
         {

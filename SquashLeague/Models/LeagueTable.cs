@@ -11,7 +11,7 @@ namespace SquashLegaue.Models
         [Display(Name = "Player")]
         public string Name {get; set;}
 
-        [Display(Name = "Matchs played")]
+        [Display(Name = "Matchs")]
         public int Matchs { get; set; }
 
         [Display(Name = "Wins")]
