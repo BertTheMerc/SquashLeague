@@ -1,0 +1,70 @@
+﻿@model SquashLegaue.Models.Head2Head
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <legend>Head2Head</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Player1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Player2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfGames)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfGames)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfDraws)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfDraws)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Player1Wins)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player1Wins)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Player2Wins)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player2Wins)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Player1GamesWon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player1GamesWon)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Player2GamesWon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player2GamesWon)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

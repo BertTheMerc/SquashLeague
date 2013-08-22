@@ -6,8 +6,6 @@
         @using (Html.BeginForm()) {
             @Html.DisplayNameFor(model => model.SelectedResultTypeID)
             @Html.DropDownListFor( model => model.SelectedResultTypeID,  Model.LeagueResultTypes, string.Empty )<input type="submit" value="Refresh" />
-            @Html.DisplayNameFor(model => model.LeagueData)
-            @Html.CheckBoxFor(model => model.LeagueData, "Use only league results")
         }
     </div>
 

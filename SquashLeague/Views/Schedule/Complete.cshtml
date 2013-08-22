@@ -14,7 +14,7 @@
         <legend>GameResult</legend>
         
         <div class="editor-label">
-            @Html.DisplayFor(model => model.GameTypeDisplay) played on @Html.DisplayFor(model => model.DateOfGame)
+          @Html.DisplayFor(model => model.DateOfGame)
         </div>
         
         <div class="editor-label">
@@ -32,8 +32,7 @@
             @Html.EditorFor(model => model.Player2Score)
             @Html.ValidationMessageFor(model => model.Player2Score)
         </div>
-        
-        @Html.HiddenFor(model => model.GameType)       
+            
         @Html.HiddenFor(model => model.Player1SelectedItemId)
         @Html.HiddenFor(model => model.Player2SelectedItemId)
         @Html.HiddenFor(model => model.ID)

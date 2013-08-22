@@ -47,7 +47,7 @@ namespace SquashLegaue.Models
         {
             get
             {
-                return string.Format("GAME RESULT: Result of the {4} game with {0} & {1} is {2}-{3}.", Player1.Nickname, Player2.Nickname, Player1Score, Player2Score, GameTypeDisplay);
+                return string.Format("GAME RESULT: Result of the game with {0} & {1} is {2}-{3}.", Player1.Nickname, Player2.Nickname, Player1Score, Player2Score);
             }
         }
 

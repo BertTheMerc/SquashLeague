@@ -19,9 +19,6 @@ namespace SquashLegaue.Models
         [Display(Name = "Result display format")]
         public int SelectedResultTypeID {get; set;}
 
-        [Display(Name = "Legaue Data?")]
-        public bool LeagueData { get; set; }
-
         public LeagueResultType ActiveResultType
         {
             get
@@ -38,8 +35,7 @@ namespace SquashLegaue.Models
             var cache = new SiteCache();
             this.resultTypes = cache.GetLeageResultTypes();
             this.LeagueType = this.resultTypes[0];
-            this.SelectedResultTypeID = 1;
-            this.LeagueData = true;
+            this.SelectedResultTypeID = 2;
         }
 
         public IEnumerable<SelectListItem> LeagueResultTypes

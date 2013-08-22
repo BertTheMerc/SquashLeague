@@ -36,14 +36,6 @@
             @Html.DropDownListFor( model => model.Player2SelectedItemId,  Model.PlayerList, "Select a player" )
             @Html.ValidationMessageFor(model => model.Player2)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.GameType) 
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.GameType)
-            @Html.ValidationMessageFor(model => model.GameType)
-        </div>
         <p>
             <input type="submit" value="Create" />
         </p>

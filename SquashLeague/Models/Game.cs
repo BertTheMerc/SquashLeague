@@ -62,29 +62,11 @@ namespace SquashLegaue.Models
             }
         }
 
-        [Required]
-        [Display(Name = "Game Type [L=League & F=Friendly]")]
-        public string GameType { get; set; }
-
-        public string GameTypeDisplay 
-        {
-            get 
-            {
-                switch (GameType)
-                {
-                    case "L" : return "League"; 
-                    case "F" : return "Friendly";
-                }
-
-                return GameType;
-            }
-        }
-
         public string TwitterScheduled
         {
             get
             { 
-                return string.Format("SCHEDULE: {0} to play {1} as a {2} game on the {3}", Player1.Nickname, Player2.Nickname, GameTypeDisplay, DateOfGame.ToLongDateString());
+                return string.Format("SCHEDULE: {0} to play {1} on the {2}", Player1.Nickname, Player2.Nickname, DateOfGame.ToLongDateString());
             }
         }
 
@@ -92,7 +74,7 @@ namespace SquashLegaue.Models
         {
             get 
             {
-                return string.Format("SCHEDULE UPDATE: {0} to play {1} as a {2} game on the {3}", Player1.Nickname, Player2.Nickname, GameTypeDisplay, DateOfGame.ToLongDateString());
+                return string.Format("SCHEDULE UPDATE: {0} to play {1} on the {3}", Player1.Nickname, Player2.Nickname, DateOfGame.ToLongDateString());
             }
         }
 

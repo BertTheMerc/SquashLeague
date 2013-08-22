@@ -42,11 +42,6 @@ namespace SquashLegaue.Controllers
             var model = new GameResult();
             model.DateOfGame = DateTime.Today;
 
-            if (string.IsNullOrWhiteSpace(model.GameType))
-            {
-                model.GameType = "L";
-            }
-
             return View(model);
         }
 

@@ -45,7 +45,7 @@ namespace SquashLegaue.Repo
                 var table = new List<LeagueTable>();
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
                 {
-                    string sql = string.Format("SELECT * FROM {0} ORDER BY {1}", (Result.LeagueData) ? "vLeagueTable" : "vLadderTable", Result.ActiveResultType.Selector);
+                    string sql = string.Format("SELECT * FROM {0} ORDER BY {1}", "vLadderTable", Result.ActiveResultType.Selector);
                     SqlDataAdapter da;
 
                     da = new SqlDataAdapter(sql, con); 
@@ -94,7 +94,6 @@ namespace SquashLegaue.Repo
                             Player2SelectedItemId = int.Parse(dr["Player2"].ToString()),
                             Player1Score = int.Parse(dr["Player1Score"].ToString()),
                             Player2Score = int.Parse(dr["Player2Score"].ToString()),
-                            GameType = dr["GameType"].ToString(),
                             Comments = dr["Comments"].ToString()
                         });
                     }
@@ -118,7 +117,6 @@ namespace SquashLegaue.Repo
                     sp.Parameters.AddWithValue("Player2", result.Player2SelectedItemId);
                     sp.Parameters.AddWithValue("Player1Score", result.Player1Score);
                     sp.Parameters.AddWithValue("Player2Score", result.Player2Score);
-                    sp.Parameters.AddWithValue("GameType", result.GameType);
                     sp.Parameters.AddWithValue("Comments", result.Comments);
                     con.Open();
                     sp.ExecuteNonQuery();

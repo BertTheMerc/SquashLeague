@@ -20,7 +20,6 @@ namespace SquashLegaue.Controllers
 
             var model = new Game();
             model.DateOfGame = DateTime.Today;
-            model.GameType = "L";
 
             return View(model);
         }
@@ -99,7 +98,6 @@ namespace SquashLegaue.Controllers
                 result.Player1 = game.Player1;
                 result.Player2SelectedItemId = game.Player2SelectedItemId;
                 result.Player2 = game.Player2;
-                result.GameType = game.GameType;
 
                 return View(result);
             }
@@ -120,7 +118,6 @@ namespace SquashLegaue.Controllers
                 model.Player1 = game.Player1;
                 model.Player2SelectedItemId = game.Player2SelectedItemId;
                 model.Player2 = game.Player2;
-                model.GameType = game.GameType;
                 model.DateOfGame = game.DateOfGame;
                 LeagueTableRepo.AddGame(model);
 
